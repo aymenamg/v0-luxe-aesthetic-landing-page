@@ -4,23 +4,23 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #F9F7F2;
-  --foreground: #2D2D2D;
+  --background: #FDFCFB;
+  --foreground: #1A1A1A;
   --card: #FFFFFF;
-  --card-foreground: #2D2D2D;
+  --card-foreground: #1A1A1A;
   --popover: #FFFFFF;
-  --popover-foreground: #2D2D2D;
+  --popover-foreground: #1A1A1A;
   --primary: #C5A059;
   --primary-foreground: #FFFFFF;
-  --secondary: #F5F2ED;
-  --secondary-foreground: #2D2D2D;
-  --muted: #E8E4DE;
-  --muted-foreground: #6B6B6B;
+  --secondary: #E8E2D9;
+  --secondary-foreground: #1A1A1A;
+  --muted: #E8E2D9;
+  --muted-foreground: #666666;
   --accent: #C5A059;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #E8E4DE;
+  --border: #E8E2D9;
   --input: #FFFFFF;
   --ring: #C5A059;
   --chart-1: oklch(0.646 0.222 41.116);
@@ -75,7 +75,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
+  --font-sans: var(--font-sans, 'Montserrat', 'Geist Fallback');
+  --font-serif: var(--font-serif, 'Playfair Display', 'Georgia');
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -119,7 +120,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    background: radial-gradient(at top left, #FDFCFB 0%, #F5F1ED 100%);
+    background-attachment: fixed;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-transparent text-foreground;
   }
 }

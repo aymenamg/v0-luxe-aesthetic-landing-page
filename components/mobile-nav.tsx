@@ -26,7 +26,7 @@ export default function MobileNav({ onBookClick }: MobileNavProps) {
       {/* Hamburger Button */}
       <button
         onClick={toggleMenu}
-        className="md:hidden fixed top-4 right-4 z-40 bg-accent text-accent-foreground p-2 rounded-lg"
+        className="md:hidden fixed top-5 right-5 z-40 backdrop-blur-md bg-white/30 border border-white/20 text-foreground p-2 rounded-full hover:bg-white/40 transition-all duration-300"
         aria-label="Toggle menu"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -51,7 +51,7 @@ export default function MobileNav({ onBookClick }: MobileNavProps) {
               animate={{ x: 0 }}
               exit={{ x: 300 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 h-screen w-64 bg-card border-l border-border z-40 md:hidden shadow-lg"
+              className="fixed right-0 top-0 h-screen w-64 backdrop-blur-lg bg-white/40 border-l border-white/20 z-40 md:hidden shadow-xl"
             >
               <div className="pt-20 px-6 space-y-2">
                 {navItems.map((item) => (
@@ -86,18 +86,18 @@ export default function MobileNav({ onBookClick }: MobileNavProps) {
       <motion.div
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-0 left-0 right-0 md:hidden bg-accent text-accent-foreground p-4 z-30 shadow-lg"
+        className="fixed bottom-0 left-0 right-0 md:hidden backdrop-blur-lg bg-white/40 border-t border-white/20 text-foreground p-4 z-30 shadow-xl"
       >
         <div className="flex gap-3">
           <a href="tel:+15551234567" className="flex-1">
-            <Button variant="secondary" className="w-full gap-2 text-accent">
+            <Button variant="outline" className="w-full gap-2 border-foreground/20 text-foreground hover:bg-foreground/5">
               <Phone className="w-4 h-4" />
               Call Us
             </Button>
           </a>
           <Button
             onClick={onBookClick}
-            className="flex-1 bg-background hover:bg-background/90 text-accent font-semibold"
+            className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
           >
             Book Now
           </Button>

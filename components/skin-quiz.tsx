@@ -83,7 +83,12 @@ export default function SkinQuiz() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full mx-auto">
+      <div className="text-center mb-12">
+        <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-4">Personalized Path</p>
+        <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">Find Your Perfect Treatment</h2>
+        <p className="text-foreground/70 text-lg">Let Elena understand your goals and skin type for personalized recommendations</p>
+      </div>
       <AnimatePresence mode="wait">
         {step === 'goal' && (
           <motion.div
