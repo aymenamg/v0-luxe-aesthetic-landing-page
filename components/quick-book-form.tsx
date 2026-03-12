@@ -119,14 +119,22 @@ export default function QuickBookForm({ onSuccess, className = '' }: QuickBookFo
         {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service.message}</p>}
       </div>
 
-      <Button
-        type="submit"
-        disabled={isLoading}
-        className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
-      >
-        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        {isLoading ? 'Booking...' : 'Request Booking'}
-      </Button>
+      <div className="space-y-4">
+        <Button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+        >
+          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isLoading ? 'Booking...' : 'Request Booking'}
+        </Button>
+        <div className="text-center space-y-1">
+          <p className="text-xs text-foreground/60 flex items-center justify-center gap-1.5">
+            <span role="img" aria-label="lock">🔒</span> HIPAA Compliant & Secure
+          </p>
+          <p className="text-[11px] text-foreground/40 italic">No credit card required to request a consultation.</p>
+        </div>
+      </div>
     </form>
   );
 }

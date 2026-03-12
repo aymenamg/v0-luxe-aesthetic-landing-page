@@ -109,11 +109,10 @@ export default function SkinQuiz() {
                   <motion.button
                     key={goal.id}
                     onClick={() => handleGoalSelect(goal.id)}
-                    className={`p-4 rounded-lg border-2 text-left transition-all ${
-                      selectedGoal === goal.id
+                    className={`p-4 rounded-lg border-2 text-left transition-all ${selectedGoal === goal.id
                         ? 'border-accent bg-accent/10'
                         : 'border-border bg-card hover:border-accent/50'
-                    }`}
+                      }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -125,7 +124,7 @@ export default function SkinQuiz() {
 
               <Button
                 onClick={goToSkinType}
-                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                 size="lg"
               >
                 Continue <ChevronRight className="ml-2 w-4 h-4" />
@@ -153,11 +152,10 @@ export default function SkinQuiz() {
                   <motion.button
                     key={type.id}
                     onClick={() => handleSkinTypeSelect(type.id)}
-                    className={`p-3 rounded-lg border-2 text-center transition-all ${
-                      selectedSkinType === type.id
+                    className={`p-3 rounded-lg border-2 text-center transition-all ${selectedSkinType === type.id
                         ? 'border-accent bg-accent/10'
                         : 'border-border bg-card hover:border-accent/50'
-                    }`}
+                      }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -177,7 +175,7 @@ export default function SkinQuiz() {
                 </Button>
                 <Button
                   onClick={goToContact}
-                  className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
+                  className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
                   size="lg"
                 >
                   Continue <ChevronRight className="ml-2 w-4 h-4" />
@@ -239,23 +237,30 @@ export default function SkinQuiz() {
                   {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
                 </div>
 
-                <div className="flex gap-3 pt-4">
-                  <Button
-                    type="button"
-                    onClick={() => setStep('skin')}
-                    variant="outline"
-                    className="flex-1"
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={handleSubmitClick}
-                    disabled={isLoading}
-                    className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
-                  >
-                    {isLoading ? 'Submitting...' : 'See Recommendations'}
-                  </Button>
+                <div className="space-y-4 pt-4">
+                  <div className="flex gap-3">
+                    <Button
+                      type="button"
+                      onClick={() => setStep('skin')}
+                      variant="outline"
+                      className="flex-1"
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={handleSubmitClick}
+                      disabled={isLoading}
+                      className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
+                    >
+                      {isLoading ? 'Submitting...' : `See ${QUIZ_GOALS.find(g => g.id === selectedGoal)?.label || ''} Recommendations`}
+                    </Button>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xs text-foreground/50 flex items-center justify-center gap-1.5">
+                      <span role="img" aria-label="lock">🔒</span> Your privacy is 100% guaranteed.
+                    </p>
+                  </div>
                 </div>
               </form>
             </Card>
@@ -301,7 +306,7 @@ export default function SkinQuiz() {
 
               <Button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                 size="lg"
               >
                 Schedule Your Consultation

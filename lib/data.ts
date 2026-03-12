@@ -2,39 +2,27 @@
 export const SERVICES = [
   {
     id: 'botox',
-    name: 'Botox & Injectables',
-    description: 'Smooth fine lines and wrinkles with precision injections',
+    name: 'Botox',
+    description: 'Smooth fine lines and refresh your expression with expertly placed Botox for a naturally youthful, confident look.',
     image: 'https://images.unsplash.com/photo-1576091160550-112173f7f869?w=600&h=400&fit=crop',
   },
   {
-    id: 'fillers',
-    name: 'Dermal Fillers',
-    description: 'Restore volume and enhance facial contours',
+    id: 'lip-filler',
+    name: 'Lip Filler',
+    description: 'Enhance shape, symmetry, and volume with customizable lip filler treatments that create soft, balanced, and beautiful results.',
     image: 'https://images.unsplash.com/photo-1576091160511-112173f7f869?w=600&h=400&fit=crop',
   },
   {
-    id: 'laser',
-    name: 'Laser Treatments',
-    description: 'Advanced skin rejuvenation and hair removal',
+    id: 'sculptra',
+    name: 'Sculptra',
+    description: 'Restore youthful fullness and boost collagen for long-lasting, natural-looking rejuvenation that evolves beautifully over time.',
     image: 'https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&h=400&fit=crop',
   },
   {
-    id: 'microneedling',
-    name: 'Microneedling',
-    description: 'Collagen induction therapy for glowing skin',
-    image: 'https://images.unsplash.com/photo-1576091160550-112173f7f869?w=600&h=400&fit=crop',
-  },
-  {
-    id: 'hydrafacial',
-    name: 'HydraFacial',
-    description: 'Non-invasive hydration and skin resurfacing',
+    id: 'weight-loss',
+    name: 'Weight Loss',
+    description: 'Refine from within with personalized, medically guided weight loss designed to align your outer glow with your inner strength.',
     image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&h=400&fit=crop',
-  },
-  {
-    id: 'skincare',
-    name: 'Professional Skincare',
-    description: 'Customized treatments for all skin types',
-    image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&h=400&fit=crop',
   },
 ];
 

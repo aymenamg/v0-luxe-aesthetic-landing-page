@@ -26,7 +26,7 @@ export default function MobileNav({ onBookClick }: MobileNavProps) {
       {/* Hamburger Button */}
       <button
         onClick={toggleMenu}
-        className="md:hidden fixed top-5 right-5 z-40 backdrop-blur-md bg-white/30 border border-white/20 text-foreground p-2 rounded-full hover:bg-white/40 transition-all duration-300"
+        className="md:hidden fixed top-5 right-5 z-40 backdrop-blur-md bg-white/80 border border-black/10 text-foreground p-2 rounded-full hover:bg-white/90 transition-all duration-300 shadow-sm"
         aria-label="Toggle menu"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -51,7 +51,7 @@ export default function MobileNav({ onBookClick }: MobileNavProps) {
               animate={{ x: 0 }}
               exit={{ x: 300 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 h-screen w-64 backdrop-blur-lg bg-white/40 border-l border-white/20 z-40 md:hidden shadow-xl"
+              className="fixed right-0 top-0 h-screen w-64 backdrop-blur-lg bg-white/90 border-l border-black/10 z-40 md:hidden shadow-xl"
             >
               <div className="pt-20 px-6 space-y-2">
                 {navItems.map((item) => (
@@ -71,7 +71,7 @@ export default function MobileNav({ onBookClick }: MobileNavProps) {
                       onBookClick?.();
                       setIsOpen(false);
                     }}
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-md"
                   >
                     Book Appointment
                   </Button>
@@ -86,7 +86,7 @@ export default function MobileNav({ onBookClick }: MobileNavProps) {
       <motion.div
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-0 left-0 right-0 md:hidden backdrop-blur-lg bg-white/40 border-t border-white/20 text-foreground p-4 z-30 shadow-xl"
+        className="fixed bottom-0 left-0 right-0 md:hidden backdrop-blur-lg bg-white/90 border-t border-black/10 text-foreground p-4 z-30 shadow-xl"
       >
         <div className="flex gap-3">
           <a href="tel:+15551234567" className="flex-1">
@@ -97,7 +97,7 @@ export default function MobileNav({ onBookClick }: MobileNavProps) {
           </a>
           <Button
             onClick={onBookClick}
-            className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold"
+            className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-md"
           >
             Book Now
           </Button>
