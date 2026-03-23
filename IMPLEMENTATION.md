@@ -115,6 +115,14 @@ All components use `.map()` to render dynamic data, making database/CMS integrat
 </Button>
 ```
 
+### 7. **UI Component Library**
+- **Framework**: [shadcn/ui](https://ui.shadcn.com/)
+- **Strategy**: We strictly use shadcn/ui for building all interface elements. This provides accessible, customizable components that seamlessly adapt to the Clinical Luxury design.
+
+### 8. **Payment Handling**
+- **Current State**: Payments are handled **in-person** at the clinic.
+- **Future State**: Stripe integration is planned for the future and will be implemented when ready. The booking flow currently confirms appointments without requiring credit card details upfront to reduce friction.
+
 ## Project Structure
 
 ```

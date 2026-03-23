@@ -6,7 +6,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import {
   Select,
   SelectContent,
@@ -25,31 +32,36 @@ interface QuickBookFormProps {
 
 export default function QuickBookForm({ onSuccess, className = '' }: QuickBookFormProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-    setValue,
-    reset,
-  } = useForm<QuickBookFormData>({
+  const form = useForm<QuickBookFormData>({
     resolver: zodResolver(quickBookSchema),
     defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
       service: '',
     },
   });
 
-  const selectedService = watch('service');
-
   const onSubmit = async (data: QuickBookFormData) => {
     setIsLoading(true);
     try {
-      // Simulate API call - Replace with actual backend call
+      // Call actual backend endpoint
       console.log('[v0] Form data:', data);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          skinType: 'Unknown',
+          goal: 'General Consultation',
+          source: 'quick-book',
+        }),
+      });
 
-      toast.success('Booking request received! We\'ll contact you within 24 hours.');
-      reset();
+      if (!res.ok) throw new Error('Failed to submit');
+
+      toast.success("Booking request received! We'll contact you within 24 hours.");
+      form.reset();
       onSuccess?.();
     } catch (error) {
       toast.error('Failed to submit booking. Please try again.');
@@ -59,82 +71,105 @@ export default function QuickBookForm({ onSuccess, className = '' }: QuickBookFo
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`space-y-4 ${className}`}>
-      <div>
-        <Label htmlFor="name" className="text-foreground text-sm">
-          Name
-        </Label>
-        <Input
-          id="name"
-          {...register('name')}
-          placeholder="Your name"
-          className="mt-2 bg-background border-border text-foreground placeholder:text-muted-foreground"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={`space-y-4 ${className}`}>
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-foreground text-sm">Name</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Your name"
+                  className="bg-background border-border text-foreground placeholder:text-muted-foreground"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="text-red-500 text-xs mt-1" />
+            </FormItem>
+          )}
         />
-        {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
-      </div>
 
-      <div>
-        <Label htmlFor="email" className="text-foreground text-sm">
-          Email
-        </Label>
-        <Input
-          id="email"
-          type="email"
-          {...register('email')}
-          placeholder="you@example.com"
-          className="mt-2 bg-background border-border text-foreground placeholder:text-muted-foreground"
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-foreground text-sm">Email</FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  placeholder="you@example.com"
+                  className="bg-background border-border text-foreground placeholder:text-muted-foreground"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="text-red-500 text-xs mt-1" />
+            </FormItem>
+          )}
         />
-        {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
-      </div>
 
-      <div>
-        <Label htmlFor="phone" className="text-foreground text-sm">
-          Phone (10 digits)
-        </Label>
-        <Input
-          id="phone"
-          {...register('phone')}
-          placeholder="5551234567"
-          className="mt-2 bg-background border-border text-foreground placeholder:text-muted-foreground"
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-foreground text-sm">Phone (10 digits)</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="5551234567"
+                  className="bg-background border-border text-foreground placeholder:text-muted-foreground"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="text-red-500 text-xs mt-1" />
+            </FormItem>
+          )}
         />
-        {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
-      </div>
 
-      <div>
-        <Label htmlFor="service" className="text-foreground text-sm">
-          Service
-        </Label>
-        <Select value={selectedService} onValueChange={(value) => setValue('service', value)}>
-          <SelectTrigger className="mt-2 bg-background border-border text-foreground">
-            <SelectValue placeholder="Select a service" />
-          </SelectTrigger>
-          <SelectContent className="bg-card border-border">
-            {SERVICES.map((service) => (
-              <SelectItem key={service.id} value={service.id} className="text-foreground">
-                {service.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service.message}</p>}
-      </div>
+        <FormField
+          control={form.control}
+          name="service"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-foreground text-sm">Service</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="bg-background border-border text-foreground">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent className="bg-card border-border">
+                  {SERVICES.map((service) => (
+                    <SelectItem key={service.id} value={service.id} className="text-foreground">
+                      {service.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage className="text-red-500 text-xs mt-1" />
+            </FormItem>
+          )}
+        />
 
-      <div className="space-y-4">
-        <Button
-          type="submit"
-          disabled={isLoading}
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-        >
-          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {isLoading ? 'Booking...' : 'Request Booking'}
-        </Button>
-        <div className="text-center space-y-1">
-          <p className="text-xs text-foreground/60 flex items-center justify-center gap-1.5">
-            <span role="img" aria-label="lock">🔒</span> HIPAA Compliant & Secure
-          </p>
-          <p className="text-[11px] text-foreground/40 italic">No credit card required to request a consultation.</p>
+        <div className="space-y-4 pt-2">
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+          >
+            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {isLoading ? 'Booking...' : 'Request Booking'}
+          </Button>
+          <div className="text-center space-y-1">
+            <p className="text-xs text-foreground/60 flex items-center justify-center gap-1.5">
+              <span role="img" aria-label="lock">🔒</span> HIPAA Compliant & Secure
+            </p>
+            <p className="text-[11px] text-foreground/40 italic">No credit card required to request a consultation.</p>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </Form>
   );
 }

@@ -29,12 +29,12 @@
 - [x] Setup Next.js, React, and TypeScript environment
 - [x] Applied "Clinical Luxury" design aesthetics (colors, typography)
 - [x] Restructured layout based on competitor research 
+- [x] Create a Sentry account and obtain project DSN
+- [x] Integrate Sentry with Next.js using `@sentry/nextjs` wizard
+- [x] Configure Sentry User Feedback widget for the feedback loop
 
 ### 🟡 In Progress (Current Focus)
 *What the AI should be working on right now.*
-- [ ] Create a Sentry account and obtain project DSN
-- [ ] Integrate Sentry with Next.js using `@sentry/nextjs` wizard
-- [ ] Configure Sentry User Feedback widget for the feedback loop
 ### 🔴 Backlog / To-Do
 *Future features or known issues to tackle later.*
 - [ ] Polish UI micro-animations and hover states
@@ -46,8 +46,10 @@
 ## 🛠️ AI Development Guidelines
 1. **Update This File:** Whenever you finish a task from the "In Progress" list, check it off and move it to "Completed", then pull the next item from the "Backlog".
 2. **Stay on Brand:** Ensure all new components strictly follow the "Clinical Luxury" premium vibe (clean spacing, sophisticated typography, high-end upscale feel).
-3. **Ask Before Big Changes:** If a task requires fundamentally altering the project structure, global styles, or deleting significant code, always ask the user for confirmation first.
-4. **Code Quality:** Keep components small, reusable, and well-typed. 
+3. **Use Shadcn UI:** Use [shadcn/ui](https://ui.shadcn.com/) for building any new interface elements.
+4. **Payments:** Payment processing is currently managed **in-person**. Stripe integration will be added later when ready. Do not request credit card info in the booking flows.
+5. **Ask Before Big Changes:** If a task requires fundamentally altering the project structure, global styles, or deleting significant code, always ask the user for confirmation first.
+6. **Code Quality:** Keep components small, reusable, and well-typed. 
 
 ---
 

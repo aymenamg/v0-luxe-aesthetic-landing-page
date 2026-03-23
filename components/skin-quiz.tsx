@@ -36,8 +36,22 @@ export default function SkinQuiz() {
   const onSubmitContact = async (data: QuizFormData) => {
     setIsLoading(true);
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Call actual backend endpoint
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          service: 'Skin Quiz Recommendation',
+          goal: data.goal,
+          skinType: data.skinType,
+          source: 'skin-quiz',
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed to submit quiz');
 
       // Show recommendation
       setQuizResult({ goal: data.goal, skinType: data.skinType });
